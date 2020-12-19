@@ -109,8 +109,8 @@ COMPAT_SYSCALL_DEFINE2(settimeofday, struct compat_timeval __user *, tv,
 		       struct timezone __user *, tz)
 {
 	struct timeval user_tv;
-	struct timespec	new_ts;
-	struct timezone new_tz;
+	struct timespec	new_ts={0};
+	struct timezone new_tz={0};
 
 	if (tv) {
 		if (compat_get_timeval(&user_tv, tv))
