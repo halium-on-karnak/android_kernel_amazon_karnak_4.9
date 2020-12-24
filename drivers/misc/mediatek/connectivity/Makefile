@@ -31,6 +31,12 @@ ifneq ($(KERNELRELEASE),)
     $(MODULE_NAME)-objs += common/connectivity_build_in_adapter.o
     $(MODULE_NAME)-objs += common/wmt_build_in_adapter.o
 
+    obj-$(CONFIG_MTK_COMBO) += common/
+    obj-$(CONFIG_MTK_COMBO_WIFI) += wlan/adaptor/
+
+    ifneq ($(filter "CONSYS_8163", $(CONFIG_MTK_COMBO_CHIP)),)
+        obj-$(CONFIG_MTK_COMBO_WIFI) += wlan/core/gen2/
+    endif
 # Otherwise we were called directly from the command line;
 # invoke the kernel build system.
 else
